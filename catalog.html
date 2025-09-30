@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Da Roça - Catálogo de Produtos Orgânicos</title>
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-green: #2D5A27;
+            --accent-green: #4A7C59;
+            --light-green: #8FBC8F;
+            --cream: #F8F6F0;
+            --warm-white: #FFFEF7;
+            --earth-brown: #8B4513;
+            --soft-gray: #F5F5F5;
+            --text-dark: #2C3E2F;
+            --gold: #D4AF37;
+            --border-light: #E8E8E8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--warm-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header Elegante */
+        .header {
+            background: var(--warm-white);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--primary-green);
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-green);
+        }
+
+        .logo h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: var(--primary-green);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(45, 90, 39, 0.3);
+        }
+
+        /* Hero do Catálogo */
+        .catalog-hero {
+            background: linear-gradient(135deg, var(--cream) 0%, var(--soft-gray) 100%);
+            padding: 4rem 2rem 3rem;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Filtros Modernos */
+        .filters-section {
+            padding: 2rem;
+            background: white;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .filters-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .filters-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-green);
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            border: 2px solid var(--border-light);
+            background: white;
+            color: var(--text-dark);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-green);
+            color: white;
+            border-color: var(--primary-green);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(45, 90, 39, 0.2);
+        }
+
+        /* Grid de Produtos */
+        .products-section {
+            padding: 3rem 2rem;
+            background: var(--warm-white);
+        }
+
+        .products-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            border: 1px solid var(--border-light);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: all 0.4s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-content {
+            padding: 1.8rem;
+        }
+
+        .product-category {
+            font-size: 0.85rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.8rem;
+            line-height: 1.3;
+        }
+
+        .product-description {
+            color: var(--text-dark);
+            opacity: 0.7;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .product-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+
+        .product-price .old-price {
+            font-size: 1rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 0.5rem;
+        }
+
+        .add-to-cart {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-to-cart:hover {
+            background: var(--accent-green);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(45, 90, 39, 0.3);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .product-badge.organic {
+            background: var(--accent-green);
+        }
+
+        .product-badge.fresh {
+            background: var(--gold);
+        }
+
+        .product-badge.sale {
+            background: #ff4757;
+        }
+
+        /* Loading e Estados */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            color: var(--accent-green);
+        }
+
+        .no-products {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-dark);
+            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .nav {
+                display: none;
+            }
+            
+            .page-title {
+                font-size: 2.8rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 1rem;
+            }
+            
+            .catalog-hero {
+                padding: 3rem 1rem 2rem;
+            }
+            
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .page-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .filters {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 0.5rem;
+            }
+            
+            .filter-btn {
+                white-space: nowrap;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .product-footer {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+            
+            .add-to-cart {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .product-card:nth-child(even) {
+            animation-delay: 0.1s;
+        }
+
+        .product-card:nth-child(3n) {
+            animation-delay: 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/daRoca.png" alt="Logo Da Roça">
+                <h1>Da Roça</h1>
+            </a>
+            
+            <nav class="nav">
+                <a href="index.html" class="nav-link">
+                    <i class='bx bx-home'></i>
+                    Início
+                </a>
+                <a href="catalog.html" class="nav-link active">
+                    <i class='bx bx-store'></i>
+                    Produtos
+                </a>
+                <a href="pages/about.html" class="nav-link">
+                    <i class='bx bx-info-circle'></i>
+                    Sobre
+                </a>
+                <a href="pages/contact.html" class="nav-link">
+                    <i class='bx bx-phone'></i>
+                    Contato
+                </a>
+                <a href="pages/login.html" class="nav-link">
+                    <i class='bx bx-user'></i>
+                    Entrar
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero do Catálogo -->
+    <section class="catalog-hero">
+        <div class="hero-container">
+            <h1 class="page-title">Nossos Produtos</h1>
+            <p class="page-subtitle">
+                Descubra a seleção mais fresca de produtos orgânicos, 
+                cultivados com amor e cuidado para sua família.
+            </p>
+        </div>
+    </section>
+
+    <!-- Filtros -->
+    <section class="filters-section">
+        <div class="filters-container">
+            <h3 class="filters-title">Filtrar por categoria:</h3>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="todos">
+                    <i class='bx bx-grid-alt'></i>
+                    Todos
+                </button>
+                <button class="filter-btn" data-filter="frutas">
+                    <i class='bx bx-lemon'></i>
+                    Frutas
+                </button>
+                <button class="filter-btn" data-filter="vegetais">
+                    <i class='bx bx-carrot'></i>
+                    Vegetais
+                </button>
+                <button class="filter-btn" data-filter="verduras">
+                    <i class='bx bx-leaf'></i>
+                    Verduras
+                </button>
+                <button class="filter-btn" data-filter="laticinios">
+                    <i class='bx bx-cake'></i>
+                    Laticínios
+                </button>
+                <button class="filter-btn" data-filter="graos">
+                    <i class='bx bx-bowl-rice'></i>
+                    Grãos
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grid de Produtos -->
+    <section class="products-section">
+        <div class="products-container">
+            <div class="products-grid" id="productsGrid">
+                <!-- Produtos serão carregados aqui -->
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Dados dos produtos
+        const products = [
+            {
+                id: 1,
+                name: "Alface Manteiga Orgânica",
+                category: "verduras",
+                price: 4.99,
+                oldPrice: 6.99,
+                description: "Alface fresca e crocante, cultivada sem agrotóxicos.",
+                image: "assets/images/Alface Manteiga.webp",
+                badge: "organic"
+            },
+            {
+                id: 2,
+                name: "Banana Nanica",
+                category: "frutas",
+                price: 3.50,
+                description: "Bananas doces e nutritivas, ricas em potássio.",
+                image: "assets/images/Banana Nanica.jpg",
+                badge: "fresh"
+            },
+            {
+                id: 3,
+                name: "Cenoura Orgânica",
+                category: "vegetais",
+                price: 5.99,
+                description: "Cenouras crocantes e saborosas, ideais para sucos e pratos.",
+                image: "assets/images/cenoura.avif",
+                badge: "organic"
+            },
+            {
+                id: 4,
+                name: "Feijão Preto Orgânico",
+                category: "graos",
+                price: 8.99,
+                oldPrice: 11.99,
+                description: "Feijão preto de alta qualidade, rico em proteínas.",
+                image: "assets/images/Feijão Preto.webp",
+                badge: "sale"
+            },
+            {
+                id: 5,
+                name: "Mix de Berries",
+                category: "frutas",
+                price: 12.99,
+                description: "Mistura de mirtilo e framboesa, antioxidantes naturais.",
+                image: "assets/images/Mirtilo e Framboesa.avif",
+                badge: "fresh"
+            },
+            {
+                id: 6,
+                name: "Morango Orgânico",
+                category: "frutas",
+                price: 9.99,
+                description: "Morangos doces e suculentos, sem pesticidas.",
+                image: "assets/images/Morango Orgânico.webp",
+                badge: "organic"
+            },
+            {
+                id: 7,
+                name: "Queijo Minas Artesanal",
+                category: "laticinios",
+                price: 15.99,
+                description: "Queijo minas fresco, produzido de forma artesanal.",
+                image: "assets/images/Queijo Minas.jpg",
+                badge: "fresh"
+            },
+            {
+                id: 8,
+                name: "Tomate Orgânico",
+                category: "vegetais",
+                price: 7.99,
+                description: "Tomates saborosos e carnudos, perfeitos para saladas.",
+                image: "assets/images/Tomate Orgânico.jpg",
+                badge: "organic"
+            }
+        ];
+
+        // Funções do Catálogo
+        let currentFilter = 'todos';
+
+        function renderProducts(productsToRender = products) {
+            const grid = document.getElementById('productsGrid');
+            
+            if (productsToRender.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-products">
+                        <i class='bx bx-search' style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.5;"></i>
+                        <h3>Nenhum produto encontrado</h3>
+                        <p>Tente um filtro diferente ou volte mais tarde.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = productsToRender.map(product => `
+                <div class="product-card" data-category="${product.category}">
+                    ${product.badge ? `<div class="product-badge ${product.badge}">
+                        ${product.badge === 'organic' ? 'Orgânico' : 
+                          product.badge === 'fresh' ? 'Fresco' : 'Oferta'}
+                    </div>` : ''}
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-content">
+                        <div class="product-category">${getCategoryName(product.category)}</div>
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-footer">
+                            <div class="product-price">
+                                R$ ${product.price.toFixed(2)}
+                                ${product.oldPrice ? `<span class="old-price">R$ ${product.oldPrice.toFixed(2)}</span>` : ''}
+                            </div>
+                            <button class="add-to-cart" onclick="addToCart(${product.id})">
+                                <i class='bx bx-cart-add'></i>
+                                Adicionar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getCategoryName(category) {
+            const categoryNames = {
+                'frutas': 'Frutas',
+                'vegetais': 'Vegetais',
+                'verduras': 'Verduras',
+                'laticinios': 'Laticínios',
+                'graos': 'Grãos'
+            };
+            return categoryNames[category] || category;
+        }
+
+        function filterProducts(category) {
+            currentFilter = category;
+            
+            // Atualizar botões de filtro
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-filter="${category}"]`).classList.add('active');
+
+            // Filtrar produtos
+            const filteredProducts = category === 'todos' 
+                ? products 
+                : products.filter(product => product.category === category);
+            
+            renderProducts(filteredProducts);
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                alert(`${product.name} adicionado ao carrinho!`);
+                // Aqui você implementaria a lógica real do carrinho
+            }
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+            
+            // Filtros
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterProducts(btn.dataset.filter);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

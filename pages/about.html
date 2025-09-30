@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Da Roça - Nossa História</title>
+    
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-green: #2D5A27;
+            --accent-green: #4A7C59;
+            --light-green: #8FBC8F;
+            --cream: #F8F6F0;
+            --warm-white: #FFFEF7;
+            --earth-brown: #8B4513;
+            --soft-gray: #F5F5F5;
+            --text-dark: #2C3E2F;
+            --gold: #D4AF37;
+            --border-light: #E8E8E8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--warm-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--primary-green);
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-green);
+        }
+
+        .logo h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background: var(--primary-green);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(45, 90, 39, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-green), var(--accent-green));
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="40" r="1.5" fill="white" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="white" opacity="0.1"/></svg>') repeat;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .story-content {
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .story-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+
+        .highlight {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+
+        .story-visual {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .story-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, var(--light-green), var(--accent-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 8rem;
+            color: white;
+            opacity: 0.8;
+        }
+
+        /* Values Section */
+        .values-section {
+            background: var(--soft-gray);
+            padding: 5rem 2rem;
+        }
+
+        .values-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .values-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .values-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            opacity: 0.7;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .value-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-green), var(--gold));
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--accent-green), var(--light-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .value-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .value-description {
+            color: var(--text-dark);
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--accent-green);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 50%;
+            padding: 0 2rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            text-align: right;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .timeline-year {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title-item {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-description {
+            color: var(--text-dark);
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--gold);
+            border-radius: 50%;
+            top: 2rem;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-marker {
+            right: -2.5rem;
+        }
+
+        .timeline-item:nth-child(even) .timeline-marker {
+            left: -2.5rem;
+        }
+
+        /* Team Section */
+        .team-section {
+            background: var(--cream);
+            padding: 5rem 2rem;
+        }
+
+        .team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .team-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .team-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            opacity: 0.7;
+            margin-bottom: 4rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--accent-green), var(--light-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2.5rem;
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .member-role {
+            color: var(--accent-green);
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .member-description {
+            color: var(--text-dark);
+            opacity: 0.8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Back Button */
+        .back-home {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: var(--primary-green);
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 5px 15px rgba(45, 90, 39, 0.3);
+        }
+
+        .back-home:hover {
+            background: var(--accent-green);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(45, 90, 39, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .nav {
+                display: none;
+            }
+            
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                margin-left: 0 !important;
+                padding-left: 4rem;
+                text-align: left !important;
+            }
+            
+            .timeline-item .timeline-marker {
+                left: 10px !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 1rem;
+            }
+            
+            .hero {
+                padding: 3rem 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .story-section,
+            .values-section,
+            .timeline-section,
+            .team-section {
+                padding: 3rem 1rem;
+            }
+            
+            .values-grid,
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .value-card,
+        .timeline-item,
+        .team-member {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="back-home">
+        <i class='bx bx-arrow-back'></i>
+        Voltar ao Início
+    </a>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <img src="../assets/images/daRoca.png" alt="Logo Da Roça">
+                <h1>Da Roça</h1>
+            </a>
+            
+            <nav class="nav">
+                <a href="../index.html" class="nav-link">
+                    <i class='bx bx-home'></i>
+                    Início
+                </a>
+                <a href="../catalog.html" class="nav-link">
+                    <i class='bx bx-store'></i>
+                    Produtos
+                </a>
+                <a href="about.html" class="nav-link active">
+                    <i class='bx bx-info-circle'></i>
+                    Sobre
+                </a>
+                <a href="contact.html" class="nav-link">
+                    <i class='bx bx-phone'></i>
+                    Contato
+                </a>
+                <a href="login.html" class="nav-link">
+                    <i class='bx bx-user'></i>
+                    Entrar
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class='bx bx-leaf'></i>
+                Nossa História
+            </div>
+            <h1 class="hero-title">Da Roça para Sua Mesa</h1>
+            <p class="hero-subtitle">
+                Há mais de 20 anos levando produtos orgânicos frescos e de qualidade 
+                diretamente do campo para sua família, com amor e sustentabilidade.
+            </p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="story-grid">
+            <div class="story-content">
+                <h2 class="section-title">Uma História de <span class="highlight">Paixão e Propósito</span></h2>
+                <p class="story-text">
+                    A Da Roça nasceu do sonho de <strong>João e Maria Silva</strong>, 
+                    agricultores familiares que acreditavam no poder transformador da agricultura orgânica. 
+                    Em 2003, começaram com uma pequena horta em sua propriedade rural.
+                </p>
+                <p class="story-text">
+                    O que começou como um projeto familiar se transformou em uma missão: 
+                    <span class="highlight">conectar produtores locais diretamente aos consumidores</span>, 
+                    garantindo produtos frescos, saudáveis e sustentáveis.
+                </p>
+                <p class="story-text">
+                    Hoje, somos uma rede de mais de <strong>150 produtores parceiros</strong>, 
+                    todos comprometidos com práticas orgânicas e sustentáveis, 
+                    atendendo milhares de famílias em todo o país.
+                </p>
+            </div>
+            <div class="story-visual">
+                <div class="story-image">
+                    <i class='bx bx-leaf'></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="values-container">
+            <h2 class="values-title">Nossos Valores</h2>
+            <p class="values-subtitle">
+                Princípios que guiam cada decisão e definem quem somos
+            </p>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class='bx bx-leaf'></i>
+                    </div>
+                    <h3 class="value-title">Sustentabilidade</h3>
+                    <p class="value-description">
+                        Cuidamos do meio ambiente através de práticas agrícolas sustentáveis, 
+                        preservando a terra para as futuras gerações.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class='bx bx-heart'></i>
+                    </div>
+                    <h3 class="value-title">Qualidade</h3>
+                    <p class="value-description">
+                        Selecionamos cuidadosamente cada produto, garantindo que apenas 
+                        o melhor chegue até você e sua família.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class='bx bx-group'></i>
+                    </div>
+                    <h3 class="value-title">Comunidade</h3>
+                    <p class="value-description">
+                        Valorizamos pequenos produtores locais, fortalecendo a economia 
+                        regional e criando laços duradouros.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class='bx bx-shield-check'></i>
+                    </div>
+                    <h3 class="value-title">Transparência</h3>
+                    <p class="value-description">
+                        Mantemos total transparência sobre a origem dos produtos, 
+                        processos de cultivo e certificações orgânicas.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class='bx bx-star'></i>
+                    </div>
+                    <h3 class="value-title">Inovação</h3>
+                    <p class="value-description">
+                        Investimos constantemente em novas tecnologias e métodos 
+                        para melhorar nossos produtos e serviços.
+                    </p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class='bx bx-time'></i>
+                    </div>
+                    <h3 class="value-title">Compromisso</h3>
+                    <p class="value-description">
+                        Nosso compromisso é entregar sempre produtos frescos e saudáveis, 
+                        mantendo a confiança de nossos clientes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="timeline-section">
+        <h2 class="timeline-title">Nossa Jornada</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2003</div>
+                    <h3 class="timeline-title-item">O Início</h3>
+                    <p class="timeline-description">
+                        João e Maria Silva iniciam uma pequena horta orgânica em sua propriedade, 
+                        vendendo produtos para vizinhos e feiras locais.
+                    </p>
+                </div>
+                <div class="timeline-marker"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2008</div>
+                    <h3 class="timeline-title-item">Primeira Certificação</h3>
+                    <p class="timeline-description">
+                        Obtemos nossa primeira certificação orgânica oficial, 
+                        expandindo para 10 produtores parceiros na região.
+                    </p>
+                </div>
+                <div class="timeline-marker"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2012</div>
+                    <h3 class="timeline-title-item">Expansão Regional</h3>
+                    <p class="timeline-description">
+                        Expandimos para outras cidades, criando uma rede de 50 produtores 
+                        e implementando serviço de entrega domiciliar.
+                    </p>
+                </div>
+                <div class="timeline-marker"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2018</div>
+                    <h3 class="timeline-title-item">Era Digital</h3>
+                    <p class="timeline-description">
+                        Lançamos nossa plataforma online e aplicativo móvel, 
+                        revolucionando a forma como conectamos produtores e consumidores.
+                    </p>
+                </div>
+                <div class="timeline-marker"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-year">2023</div>
+                    <h3 class="timeline-title-item">Presente</h3>
+                    <p class="timeline-description">
+                        Hoje somos uma rede com mais de 150 produtores parceiros, 
+                        atendendo milhares de famílias em todo o país.
+                    </p>
+                </div>
+                <div class="timeline-marker"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="team-container">
+            <h2 class="team-title">Nossa Equipe</h2>
+            <p class="team-subtitle">
+                Pessoas apaixonadas que fazem a diferença todos os dias
+            </p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <i class='bx bx-user'></i>
+                    </div>
+                    <h3 class="member-name">João Silva</h3>
+                    <p class="member-role">Fundador & CEO</p>
+                    <p class="member-description">
+                        Agricultor de terceira geração, pioneiro na agricultura orgânica 
+                        e visionário por trás da Da Roça.
+                    </p>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <i class='bx bx-user'></i>
+                    </div>
+                    <h3 class="member-name">Maria Silva</h3>
+                    <p class="member-role">Co-fundadora & COO</p>
+                    <p class="member-description">
+                        Especialista em sustentabilidade e responsável pela 
+                        qualidade e certificação de todos os produtos.
+                    </p>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <i class='bx bx-user'></i>
+                    </div>
+                    <h3 class="member-name">Carlos Santos</h3>
+                    <p class="member-role">Diretor de Logística</p>
+                    <p class="member-description">
+                        Garante que todos os produtos chegem frescos e dentro do prazo, 
+                        gerenciando nossa rede de distribuição.
+                    </p>
+                </div>
+
+                <div class="team-member">
+                    <div class="member-avatar">
+                        <i class='bx bx-user'></i>
+                    </div>
+                    <h3 class="member-name">Ana Costa</h3>
+                    <p class="member-role">Gerente de Relacionamento</p>
+                    <p class="member-description">
+                        Conecta produtores à nossa rede e garante que todos 
+                        sigam nossos padrões de qualidade e sustentabilidade.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Animação ao scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.value-card, .timeline-item, .team-member').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Parallax effect no hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
