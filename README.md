@@ -227,4 +227,4 @@ Este projeto foi desenvolvido para fins educacionais como parte da disciplina **
 
 **Da Roça** - Conectando você aos melhores produtos orgânicos 🌱
 
-*Última atualização: Janeiro 2024*
+*Última atualização: Outubro 2025*
